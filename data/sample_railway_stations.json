@@ -1,0 +1,227 @@
+[
+  {
+    "station_code": "NDLS",
+    "station_name": "New Delhi",
+    "zone": "NR",
+    "state": "Delhi",
+    "division": "Delhi",
+    "latitude": 28.6415,
+    "longitude": 77.2198
+  },
+  {
+    "station_code": "MMCT",
+    "station_name": "Mumbai Central",
+    "zone": "WR",
+    "state": "Maharashtra",
+    "division": "Mumbai",
+    "latitude": 18.9696,
+    "longitude": 72.8194
+  },
+  {
+    "station_code": "CSMT",
+    "station_name": "Mumbai CSMT",
+    "zone": "CR",
+    "state": "Maharashtra",
+    "division": "Mumbai",
+    "latitude": 18.9402,
+    "longitude": 72.8356
+  },
+  {
+    "station_code": "HWH",
+    "station_name": "Howrah Junction",
+    "zone": "ER",
+    "state": "West Bengal",
+    "division": "Howrah",
+    "latitude": 22.584,
+    "longitude": 88.3426
+  },
+  {
+    "station_code": "MAS",
+    "station_name": "Chennai Central",
+    "zone": "SR",
+    "state": "Tamil Nadu",
+    "division": "Chennai",
+    "latitude": 13.0827,
+    "longitude": 80.2707
+  },
+  {
+    "station_code": "SBC",
+    "station_name": "KSR Bengaluru",
+    "zone": "SWR",
+    "state": "Karnataka",
+    "division": "Bengaluru",
+    "latitude": 12.9784,
+    "longitude": 77.5684
+  },
+  {
+    "station_code": "CNB",
+    "station_name": "Kanpur Central",
+    "zone": "NCR",
+    "state": "Uttar Pradesh",
+    "division": "Prayagraj",
+    "latitude": 26.4547,
+    "longitude": 80.3507
+  },
+  {
+    "station_code": "PRYJ",
+    "station_name": "Prayagraj Junction",
+    "zone": "NCR",
+    "state": "Uttar Pradesh",
+    "division": "Prayagraj",
+    "latitude": 25.4484,
+    "longitude": 81.8333
+  },
+  {
+    "station_code": "DDU",
+    "station_name": "Pt. Deen Dayal Upadhyaya Jn",
+    "zone": "ECR",
+    "state": "Uttar Pradesh",
+    "division": "DDU",
+    "latitude": 25.2818,
+    "longitude": 83.1197
+  },
+  {
+    "station_code": "BSB",
+    "station_name": "Varanasi Junction",
+    "zone": "NR",
+    "state": "Uttar Pradesh",
+    "division": "Varanasi",
+    "latitude": 25.3276,
+    "longitude": 82.9866
+  },
+  {
+    "station_code": "LKO",
+    "station_name": "Lucknow Charbagh",
+    "zone": "NR",
+    "state": "Uttar Pradesh",
+    "division": "Lucknow",
+    "latitude": 26.8322,
+    "longitude": 80.9234
+  },
+  {
+    "station_code": "KOTA",
+    "station_name": "Kota Junction",
+    "zone": "WCR",
+    "state": "Rajasthan",
+    "division": "Kota",
+    "latitude": 25.2238,
+    "longitude": 75.8648
+  },
+  {
+    "station_code": "BRC",
+    "station_name": "Vadodara Junction",
+    "zone": "WR",
+    "state": "Gujarat",
+    "division": "Vadodara",
+    "latitude": 22.3107,
+    "longitude": 73.1812
+  },
+  {
+    "station_code": "ST",
+    "station_name": "Surat",
+    "zone": "WR",
+    "state": "Gujarat",
+    "division": "Mumbai",
+    "latitude": 21.205,
+    "longitude": 72.8407
+  },
+  {
+    "station_code": "BVI",
+    "station_name": "Borivali",
+    "zone": "WR",
+    "state": "Maharashtra",
+    "division": "Mumbai",
+    "latitude": 19.229,
+    "longitude": 72.857
+  },
+  {
+    "station_code": "RTM",
+    "station_name": "Ratlam Junction",
+    "zone": "WR",
+    "state": "Madhya Pradesh",
+    "division": "Ratlam",
+    "latitude": 23.3441,
+    "longitude": 75.0374
+  },
+  {
+    "station_code": "GWL",
+    "station_name": "Gwalior Junction",
+    "zone": "NCR",
+    "state": "Madhya Pradesh",
+    "division": "Jhansi",
+    "latitude": 26.2183,
+    "longitude": 78.1828
+  },
+  {
+    "station_code": "VGLJ",
+    "station_name": "VGL Jhansi Junction",
+    "zone": "NCR",
+    "state": "Uttar Pradesh",
+    "division": "Jhansi",
+    "latitude": 25.4484,
+    "longitude": 78.5685
+  },
+  {
+    "station_code": "BPL",
+    "station_name": "Bhopal Junction",
+    "zone": "WCR",
+    "state": "Madhya Pradesh",
+    "division": "Bhopal",
+    "latitude": 23.2662,
+    "longitude": 77.4126
+  },
+  {
+    "station_code": "ET",
+    "station_name": "Itarsi Junction",
+    "zone": "WCR",
+    "state": "Madhya Pradesh",
+    "division": "Bhopal",
+    "latitude": 22.6122,
+    "longitude": 77.7641
+  },
+  {
+    "station_code": "NGP",
+    "station_name": "Nagpur Junction",
+    "zone": "CR",
+    "state": "Maharashtra",
+    "division": "Nagpur",
+    "latitude": 21.1524,
+    "longitude": 79.0888
+  },
+  {
+    "station_code": "BZA",
+    "station_name": "Vijayawada Junction",
+    "zone": "SCR",
+    "state": "Andhra Pradesh",
+    "division": "Vijayawada",
+    "latitude": 16.5186,
+    "longitude": 80.62
+  },
+  {
+    "station_code": "GAYA",
+    "station_name": "Gaya Junction",
+    "zone": "ECR",
+    "state": "Bihar",
+    "division": "DDU",
+    "latitude": 24.802,
+    "longitude": 85.0064
+  },
+  {
+    "station_code": "DHN",
+    "station_name": "Dhanbad Junction",
+    "zone": "ECR",
+    "state": "Jharkhand",
+    "division": "Dhanbad",
+    "latitude": 23.7957,
+    "longitude": 86.4304
+  },
+  {
+    "station_code": "AGC",
+    "station_name": "Agra Cantt",
+    "zone": "NCR",
+    "state": "Uttar Pradesh",
+    "division": "Agra",
+    "latitude": 27.1592,
+    "longitude": 77.9904
+  }
+]
