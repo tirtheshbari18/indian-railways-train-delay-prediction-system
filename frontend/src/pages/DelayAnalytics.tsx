@@ -36,10 +36,10 @@ export const DelayAnalytics: React.FC = () => {
         api.getStationDelayFrequency(12),
         api.getActualVsPredicted(25),
       ]);
-      setMostDelayed(delData);
-      setSections(secData);
-      setStationDelays(stData);
-      setActualVsPred(avpData);
+      setMostDelayed(Array.isArray(delData) ? delData : []);
+      setSections(Array.isArray(secData) ? secData : []);
+      setStationDelays(Array.isArray(stData) ? stData : []);
+      setActualVsPred(Array.isArray(avpData) ? avpData : []);
     } catch (e) {
       console.error(e);
     } finally {
@@ -56,7 +56,7 @@ export const DelayAnalytics: React.FC = () => {
   }
 
   // Chart data for station delays
-  const stationChartData = stationDelays.map(s => ({
+  const stationChartData = (Array.isArray(stationDelays) ? stationDelays : []).map(s => ({
     station: s.station_code,
     name: s.station_name,
     delay: s.avg_arrival_delay,
@@ -64,7 +64,7 @@ export const DelayAnalytics: React.FC = () => {
   }));
 
   // Chart data for actual vs predicted
-  const avpChartData = actualVsPred.map(item => ({
+  const avpChartData = (Array.isArray(actualVsPred) ? actualVsPred : []).map(item => ({
     x: item.actual_delay,
     y: item.predicted_delay,
     train: item.train_number,
@@ -168,7 +168,7 @@ export const DelayAnalytics: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {sections.map((sec, idx) => (
+          {(Array.isArray(sections) ? sections : []).map((sec, idx) => (
             <div 
               key={idx} 
               className="p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300 transition-all space-y-2"
@@ -227,7 +227,7 @@ export const DelayAnalytics: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {mostDelayed.map((tr) => (
+              {(Array.isArray(mostDelayed) ? mostDelayed : []).map((tr) => (
                 <tr key={tr.train_number} className="hover:bg-slate-50">
                   <td className="py-3 px-4">
                     <div className="font-bold text-slate-900">{tr.train_name}</div>

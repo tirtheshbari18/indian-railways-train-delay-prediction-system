@@ -31,7 +31,7 @@ export const ModelManagement: React.FC = () => {
     setLoading(true);
     try {
       const data = await api.getRegisteredModels();
-      setModels(data);
+      setModels(Array.isArray(data) ? data : []);
     } catch (e) {
       console.error(e);
     } finally {
@@ -80,7 +80,7 @@ export const ModelManagement: React.FC = () => {
   };
 
   // Chart data: compare MAE & RMSE
-  const chartData = models.map(m => ({
+  const chartData = (Array.isArray(models) ? models : []).map(m => ({
     name: m.model_type,
     mae: m.mae,
     rmse: m.rmse,
@@ -88,7 +88,7 @@ export const ModelManagement: React.FC = () => {
     isActive: m.is_active,
   }));
 
-  const activeModel = models.find(m => m.is_active) || models[0];
+  const activeModel = Array.isArray(models) && models.length > 0 ? (models.find(m => m.is_active) || models[0]) : null;
 
   return (
     <div className="space-y-6">
@@ -167,7 +167,7 @@ export const ModelManagement: React.FC = () => {
 
       {/* Model Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {models.map((m) => {
+        {(Array.isArray(models) ? models : []).map((m) => {
           const isActive = m.is_active;
           return (
             <div 

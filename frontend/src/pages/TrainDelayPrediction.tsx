@@ -45,9 +45,10 @@ export const TrainDelayPrediction: React.FC = () => {
   const loadTrains = async () => {
     try {
       const data = await api.getTrains();
-      setTrains(data);
-      if (data.length > 0) {
-        handleSelectTrain(data[0]);
+      const safeData = Array.isArray(data) ? data : [];
+      setTrains(safeData);
+      if (safeData.length > 0) {
+        handleSelectTrain(safeData[0]);
       }
     } catch (e) {
       console.error('Failed to load trains', e);
@@ -139,7 +140,7 @@ export const TrainDelayPrediction: React.FC = () => {
                 onChange={onTrainDropdownChange}
                 className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-railway-blue focus:bg-white"
               >
-                {trains.map((t) => (
+                {(Array.isArray(trains) ? trains : []).map((t) => (
                   <option key={t.train_number} value={t.train_number}>
                     {t.train_number} - {t.train_name} ({t.train_category}) [{t.source_station_code} → {t.dest_station_code}]
                   </option>
@@ -378,7 +379,7 @@ export const TrainDelayPrediction: React.FC = () => {
                   <span>AI Operational Insights</span>
                 </div>
                 <div className="space-y-2">
-                  {prediction.explanation.map((exp, idx) => (
+                  {(Array.isArray(prediction.explanation) ? prediction.explanation : []).map((exp, idx) => (
                     <div key={idx} className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-100 flex items-start space-x-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-railway-blue mt-1.5 shrink-0" />
                       <span>{exp}</span>

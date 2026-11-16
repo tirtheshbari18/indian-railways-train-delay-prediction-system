@@ -35,10 +35,11 @@ export const RouteAnalysis: React.FC = () => {
   const loadTrains = async () => {
     try {
       const data = await api.getTrains();
-      setTrains(data);
-      if (data.length > 0) {
-        setSelectedTrainNum(data[0].train_number);
-        fetchRoutePredictions(data[0].train_number, 0, 'Clear');
+      const safeData = Array.isArray(data) ? data : [];
+      setTrains(safeData);
+      if (safeData.length > 0) {
+        setSelectedTrainNum(safeData[0].train_number);
+        fetchRoutePredictions(safeData[0].train_number, 0, 'Clear');
       }
     } catch (e) {
       console.error(e);
@@ -69,12 +70,12 @@ export const RouteAnalysis: React.FC = () => {
   };
 
   // Chart data: Station Name vs Cumulative Delay
-  const chartData = routeResult?.intermediate_stations.map(st => ({
+  const chartData = (Array.isArray(routeResult?.intermediate_stations) ? routeResult.intermediate_stations : []).map(st => ({
     name: st.station_code,
     fullName: st.station_name,
     delay: st.cumulative_delay_minutes,
     distance: st.distance_km,
-  })) || [];
+  }));
 
   return (
     <div className="space-y-6">
@@ -101,7 +102,7 @@ export const RouteAnalysis: React.FC = () => {
               onChange={(e) => setSelectedTrainNum(e.target.value)}
               className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-railway-blue"
             >
-              {trains.map((t) => (
+              {(Array.isArray(trains) ? trains : []).map((t) => (
                 <option key={t.train_number} value={t.train_number}>
                   {t.train_number} - {t.train_name}
                 </option>
@@ -249,7 +250,7 @@ export const RouteAnalysis: React.FC = () => {
                 <span>Identified Bottleneck Segments</span>
               </div>
               <ul className="space-y-1.5 text-xs text-red-700">
-                {routeResult.high_risk_segments.map((s, idx) => (
+                {(Array.isArray(routeResult.high_risk_segments) ? routeResult.high_risk_segments : []).map((s, idx) => (
                   <li key={idx} className="flex items-start gap-1.5">
                     <span className="font-bold">•</span>
                     <span>{s}</span>
@@ -265,7 +266,7 @@ export const RouteAnalysis: React.FC = () => {
                 <span>Schedule Slack Recovery Windows</span>
               </div>
               <ul className="space-y-1.5 text-xs text-emerald-700">
-                {routeResult.recovery_opportunities.map((o, idx) => (
+                {(Array.isArray(routeResult.recovery_opportunities) ? routeResult.recovery_opportunities : []).map((o, idx) => (
                   <li key={idx} className="flex items-start gap-1.5">
                     <span className="font-bold">•</span>
                     <span>{o}</span>

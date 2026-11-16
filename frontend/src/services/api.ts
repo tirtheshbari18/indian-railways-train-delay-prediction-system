@@ -31,6 +31,22 @@ const apiClient = axios.create({
   timeout: 4000,
 });
 
+// Response interceptor: ensure HTML SPA fallback from Vercel is treated as an API error
+apiClient.interceptors.response.use(
+  (response) => {
+    if (
+      typeof response.data === 'string' &&
+      (response.data.trim().startsWith('<!doctype html') ||
+       response.data.includes('<html') ||
+       response.data.includes('__vite_plugin_react_preamble_installed__'))
+    ) {
+      return Promise.reject(new Error('Received HTML response instead of JSON API response'));
+    }
+    return response;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Built-in Indian Railways reference dataset for standalone/Vercel demonstration
 const MOCK_TRAINS: Train[] = [
   {
@@ -125,6 +141,9 @@ export const api = {
   getKPIs: async (): Promise<DashboardKPIs> => {
     try {
       const res = await apiClient.get<DashboardKPIs>('/dashboard/kpis');
+      if (!res.data || typeof res.data !== 'object' || typeof (res.data as any).total_trains_analysed !== 'number') {
+        throw new Error('Invalid KPI data received');
+      }
       return res.data;
     } catch {
       return {
@@ -146,6 +165,7 @@ export const api = {
   getMostDelayedTrains: async (limit = 10): Promise<MostDelayedTrain[]> => {
     try {
       const res = await apiClient.get<MostDelayedTrain[]>('/analytics/most-delayed-trains', { params: { limit } });
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -163,6 +183,7 @@ export const api = {
   getHighDelaySections: async (): Promise<HighDelaySection[]> => {
     try {
       const res = await apiClient.get<HighDelaySection[]>('/analytics/high-delay-sections');
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -179,6 +200,7 @@ export const api = {
   getStationDelayFrequency: async (limit = 12): Promise<StationDelayItem[]> => {
     try {
       const res = await apiClient.get<StationDelayItem[]>('/analytics/station-delay-frequency', { params: { limit } });
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -197,6 +219,7 @@ export const api = {
   getPunctualityTrends: async (days = 30): Promise<DelayTrendItem[]> => {
     try {
       const res = await apiClient.get<DelayTrendItem[]>('/analytics/punctuality-trends', { params: { days } });
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       const items: DelayTrendItem[] = [];
@@ -220,6 +243,7 @@ export const api = {
   getActualVsPredicted: async (limit = 20): Promise<ActualVsPredictedItem[]> => {
     try {
       const res = await apiClient.get<ActualVsPredictedItem[]>('/analytics/actual-vs-predicted', { params: { limit } });
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -236,6 +260,7 @@ export const api = {
   getTrains: async (query?: string, category?: string): Promise<Train[]> => {
     try {
       const res = await apiClient.get<Train[]>('/trains', { params: { query, category } });
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       let filtered = [...MOCK_TRAINS];
@@ -252,6 +277,9 @@ export const api = {
   getTrainDetails: async (trainNumber: string): Promise<Train> => {
     try {
       const res = await apiClient.get<Train>(`/trains/${trainNumber}`);
+      if (!res.data || typeof res.data !== 'object' || !(res.data as any).train_number) {
+        throw new Error('Invalid train data');
+      }
       return res.data;
     } catch {
       const t = MOCK_TRAINS.find(tr => tr.train_number === trainNumber);
@@ -263,6 +291,7 @@ export const api = {
   getStations: async (search?: string): Promise<Station[]> => {
     try {
       const res = await apiClient.get<Station[]>('/trains/stations/all', { params: { search } });
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -281,6 +310,9 @@ export const api = {
   predictDelay: async (payload: PredictionRequest): Promise<PredictionResponse> => {
     try {
       const res = await apiClient.post<PredictionResponse>('/predictions/predict-delay', payload);
+      if (!res.data || typeof res.data !== 'object' || typeof (res.data as any).predicted_delay_minutes !== 'number') {
+        throw new Error('Invalid prediction response');
+      }
       return res.data;
     } catch {
       // High-precision statistical ML heuristic fallback
@@ -340,6 +372,9 @@ export const api = {
   predictRouteDelays: async (payload: { train_number: string; journey_date: string; initial_delay_minutes?: number; weather_condition?: string }): Promise<RoutePredictionResponse> => {
     try {
       const res = await apiClient.post<RoutePredictionResponse>('/routes/predict-intermediate-delays', payload);
+      if (!res.data || typeof res.data !== 'object' || !Array.isArray((res.data as any).intermediate_stations)) {
+        throw new Error('Invalid route prediction');
+      }
       return res.data;
     } catch {
       const train = MOCK_TRAINS.find(t => t.train_number === payload.train_number) || MOCK_TRAINS[0];
@@ -424,6 +459,7 @@ export const api = {
   getPredictionHistory: async (trainNumber?: string, limit = 50): Promise<PredictionHistoryItem[]> => {
     try {
       const res = await apiClient.get<PredictionHistoryItem[]>('/predictions/history', { params: { train_number: trainNumber, limit } });
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -469,6 +505,7 @@ export const api = {
   getDatasets: async (): Promise<DatasetSummary[]> => {
     try {
       const res = await apiClient.get<DatasetSummary[]>('/datasets');
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -495,6 +532,9 @@ export const api = {
       const res = await apiClient.post<DatasetSummary>('/datasets/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
+      if (!res.data || typeof res.data !== 'object' || !(res.data as any).dataset_name) {
+        throw new Error('Invalid upload response');
+      }
       return res.data;
     } catch {
       return {
@@ -516,6 +556,7 @@ export const api = {
   getRegisteredModels: async (): Promise<ModelRegistryItem[]> => {
     try {
       const res = await apiClient.get<ModelRegistryItem[]>('/models/registry');
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [
@@ -613,6 +654,7 @@ export const api = {
   getModelHistory: async () => {
     try {
       const res = await apiClient.get('/models/history');
+      if (!Array.isArray(res.data)) throw new Error('Expected array');
       return res.data;
     } catch {
       return [];

@@ -44,9 +44,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigateTab }) => {
         api.getMostDelayedTrains(5),
       ]);
       setKpis(kpisData);
-      setTrends(trendsData);
-      setSections(sectionsData);
-      setMostDelayed(delayedData);
+      setTrends(Array.isArray(trendsData) ? trendsData : []);
+      setSections(Array.isArray(sectionsData) ? sectionsData : []);
+      setMostDelayed(Array.isArray(delayedData) ? delayedData : []);
     } catch (err) {
       console.error('Failed to load dashboard data:', err);
     } finally {
@@ -177,7 +177,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigateTab }) => {
 
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={trends}>
+              <AreaChart data={Array.isArray(trends) ? trends : []}>
                 <defs>
                   <linearGradient id="delayGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#1E3E62" stopOpacity={0.4}/>
@@ -275,7 +275,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigateTab }) => {
           </div>
 
           <div className="space-y-3">
-            {sections.slice(0, 4).map((sec, idx) => (
+            {(Array.isArray(sections) ? sections : []).slice(0, 4).map((sec, idx) => (
               <div 
                 key={idx} 
                 className="p-3 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300 transition-all flex items-center justify-between gap-3"
@@ -330,7 +330,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigateTab }) => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {mostDelayed.map((tr) => (
+                {(Array.isArray(mostDelayed) ? mostDelayed : []).map((tr) => (
                   <tr key={tr.train_number} className="hover:bg-slate-50">
                     <td className="py-2.5 px-3">
                       <div className="font-bold text-slate-900">{tr.train_name}</div>

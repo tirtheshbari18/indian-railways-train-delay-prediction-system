@@ -30,13 +30,13 @@ export const DataManagement: React.FC = () => {
     setLoading(true);
     try {
       const dsList = await api.getDatasets();
-      setDatasets(dsList);
-      if (dsList.length > 0) {
+      setDatasets(Array.isArray(dsList) ? dsList : []);
+      if (Array.isArray(dsList) && dsList.length > 0) {
         // Load preview records from first dataset
-        const recList = await api.getPredictionHistory(undefined, 25);
+        await api.getPredictionHistory(undefined, 25);
       }
       // Also fetch some running records for preview
-      const previewRes = await api.getActualVsPredicted(25);
+      await api.getActualVsPredicted(25);
     } catch (e) {
       console.error(e);
     } finally {
@@ -208,7 +208,7 @@ export const DataManagement: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {datasets.map((ds) => (
+              {(Array.isArray(datasets) ? datasets : []).map((ds) => (
                 <tr key={ds.id} className="hover:bg-slate-50">
                   <td className="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
                     <FileSpreadsheet className="w-4 h-4 text-railway-blue" />

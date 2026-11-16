@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Sidebar, NavTab } from './components/Sidebar';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Dashboard } from './pages/Dashboard';
 import { TrainDelayPrediction } from './pages/TrainDelayPrediction';
 import { RouteAnalysis } from './pages/RouteAnalysis';
@@ -23,13 +24,15 @@ export const App: React.FC = () => {
 
         {/* Main Content Area */}
         <main className="flex-1 p-6 md:p-8 overflow-y-auto">
-          {currentTab === 'dashboard' && <Dashboard onNavigateTab={setCurrentTab} />}
-          {currentTab === 'predict' && <TrainDelayPrediction />}
-          {currentTab === 'route' && <RouteAnalysis />}
-          {currentTab === 'analytics' && <DelayAnalytics />}
-          {currentTab === 'datasets' && <DataManagement />}
-          {currentTab === 'models' && <ModelManagement />}
-          {currentTab === 'history' && <PredictionHistory />}
+          <ErrorBoundary key={currentTab}>
+            {currentTab === 'dashboard' && <Dashboard onNavigateTab={setCurrentTab} />}
+            {currentTab === 'predict' && <TrainDelayPrediction />}
+            {currentTab === 'route' && <RouteAnalysis />}
+            {currentTab === 'analytics' && <DelayAnalytics />}
+            {currentTab === 'datasets' && <DataManagement />}
+            {currentTab === 'models' && <ModelManagement />}
+            {currentTab === 'history' && <PredictionHistory />}
+          </ErrorBoundary>
         </main>
       </div>
 

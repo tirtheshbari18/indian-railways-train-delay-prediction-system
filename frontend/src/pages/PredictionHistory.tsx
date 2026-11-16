@@ -24,7 +24,7 @@ export const PredictionHistory: React.FC = () => {
     setLoading(true);
     try {
       const data = await api.getPredictionHistory(filterTrain || undefined, 50);
-      setHistory(data);
+      setHistory(Array.isArray(data) ? data : []);
     } catch (e) {
       console.error(e);
     } finally {
@@ -85,7 +85,7 @@ export const PredictionHistory: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {history.length > 0 ? (
+              {Array.isArray(history) && history.length > 0 ? (
                 history.map((h) => {
                   const delay = h.predicted_delay_minutes;
                   return (
