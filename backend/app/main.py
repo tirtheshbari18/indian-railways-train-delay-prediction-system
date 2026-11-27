@@ -21,6 +21,8 @@ from backend.app.api.analytics import router as analytics_router
 from backend.app.api.datasets import router as datasets_router
 from backend.app.api.models import router as models_router
 from backend.app.api.dashboard import router as dashboard_router
+from backend.app.api.stations_api import router as stations_router
+from backend.app.api.railway_network import router as railway_network_router
 
 # In-memory Rate Limiter
 request_counts = defaultdict(list)
@@ -144,6 +146,8 @@ app.include_router(analytics_router, prefix=settings.API_V1_STR)
 app.include_router(datasets_router, prefix=settings.API_V1_STR)
 app.include_router(models_router, prefix=settings.API_V1_STR)
 app.include_router(dashboard_router, prefix=settings.API_V1_STR)
+app.include_router(stations_router, prefix=settings.API_V1_STR)
+app.include_router(railway_network_router, prefix=settings.API_V1_STR)
 
 @app.get("/health")
 def health_check():

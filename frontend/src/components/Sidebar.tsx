@@ -7,10 +7,25 @@ import {
   Database, 
   Cpu, 
   History,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Navigation,
+  Map as MapIcon,
+  Building2,
+  GitFork
 } from 'lucide-react';
 
-export type NavTab = 'dashboard' | 'predict' | 'route' | 'analytics' | 'datasets' | 'models' | 'history';
+export type NavTab = 
+  | 'dashboard' 
+  | 'corridor'
+  | 'map'
+  | 'stations'
+  | 'operations'
+  | 'predict' 
+  | 'route' 
+  | 'analytics' 
+  | 'datasets' 
+  | 'models' 
+  | 'history';
 
 interface SidebarProps {
   currentTab: NavTab;
@@ -18,8 +33,15 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onTabChange }) => {
-  const navItems = [
+  const masterNavItems = [
     { id: 'dashboard' as NavTab, label: 'Analytics Dashboard', icon: LayoutDashboard, badge: null },
+    { id: 'corridor' as NavTab, label: 'Trains Between Stations', icon: Navigation, badge: '40+ Trains' },
+    { id: 'map' as NavTab, label: 'Railway Network GIS Map', icon: MapIcon, badge: 'Leaflet' },
+    { id: 'stations' as NavTab, label: 'Station Master & Platforms', icon: Building2, badge: 'Verified' },
+    { id: 'operations' as NavTab, label: 'Crossings, Chainage & Zones', icon: GitFork, badge: 'WTT' },
+  ];
+
+  const mlNavItems = [
     { id: 'predict' as NavTab, label: 'Train Delay Prediction', icon: Clock, badge: 'AI ML' },
     { id: 'route' as NavTab, label: 'Route & Intermediate Stops', icon: GitCommit, badge: 'Dynamic' },
     { id: 'analytics' as NavTab, label: 'Railway Delay Analytics', icon: BarChart3, badge: null },
@@ -30,52 +52,94 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onTabChange }) => 
 
   return (
     <aside className="w-64 bg-white border-r border-slate-200 min-h-[calc(100vh-4rem)] flex flex-col justify-between p-4 shadow-sm">
-      <div className="space-y-1">
-        <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-          Operations & Intelligence
-        </div>
+      <div className="space-y-4">
         
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = currentTab === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => onTabChange(item.id)}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                isActive
-                  ? 'bg-railway-navy text-white shadow-sm'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-              }`}
-            >
-              <div className="flex items-center space-x-3">
-                <Icon className={`w-4 h-4 ${isActive ? 'text-blue-300' : 'text-slate-500'}`} />
-                <span>{item.label}</span>
-              </div>
-              {item.badge && (
-                <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
-                    isActive
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-slate-100 text-slate-600 border border-slate-200'
-                  }`}
-                >
-                  {item.badge}
-                </span>
-              )}
-            </button>
-          );
-        })}
+        {/* Section 1: Indian Railways Master Database */}
+        <div className="space-y-1">
+          <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            Network & Train Master
+          </div>
+          {masterNavItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = currentTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onTabChange(item.id)}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all ${
+                  isActive
+                    ? 'bg-railway-navy text-white shadow-sm'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                }`}
+              >
+                <div className="flex items-center space-x-2.5">
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-blue-300' : 'text-slate-500'}`} />
+                  <span>{item.label}</span>
+                </div>
+                {item.badge && (
+                  <span
+                    className={`text-[9px] px-1.5 py-0.2 rounded font-bold ${
+                      isActive
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-slate-100 text-slate-600 border border-slate-200'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Section 2: AI & Predictive Operations */}
+        <div className="space-y-1 pt-2 border-t border-slate-100">
+          <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            AI Delay Prediction
+          </div>
+          {mlNavItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = currentTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onTabChange(item.id)}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all ${
+                  isActive
+                    ? 'bg-railway-navy text-white shadow-sm'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                }`}
+              >
+                <div className="flex items-center space-x-2.5">
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-blue-300' : 'text-slate-500'}`} />
+                  <span>{item.label}</span>
+                </div>
+                {item.badge && (
+                  <span
+                    className={`text-[9px] px-1.5 py-0.2 rounded font-bold ${
+                      isActive
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-slate-100 text-slate-600 border border-slate-200'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
       </div>
 
       {/* Railway Information footer card */}
-      <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 mt-6 text-xs text-slate-500 space-y-1">
+      <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 mt-6 text-xs text-slate-500 space-y-1">
         <div className="font-semibold text-slate-800 flex items-center gap-1.5">
-          <FileSpreadsheet className="w-4 h-4 text-railway-blue" />
-          <span>Operational Benchmark</span>
+          <FileSpreadsheet className="w-3.5 h-3.5 text-railway-blue" />
+          <span className="text-[11px]">Official CRIS & RBS Matrix</span>
         </div>
-        <p className="text-[11px] text-slate-600 leading-relaxed">
-          Trained on chronological Indian Railways timetables, delay records, and fog corridor weather indices.
+        <p className="text-[10px] text-slate-600 leading-relaxed">
+          Full 28-table normalized database with 18 Railway Zones, authentic track geometry, and real timetable chainage.
         </p>
       </div>
     </aside>

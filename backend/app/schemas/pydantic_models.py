@@ -257,3 +257,129 @@ class ActualVsPredictedItem(BaseModel):
     actual_delay: float
     predicted_delay: float
     error_minutes: float
+
+# ----------------- Comprehensive Indian Railways Master Schemas -----------------
+class TrainBetweenStationsResult(BaseModel):
+    train_number: str
+    train_name: str
+    train_category: str
+    train_type: str = "Express"
+    runs_on_days: str = "Daily"
+    source_code: str
+    source_name: str
+    source_departure: str
+    source_platform: Optional[str] = None
+    dest_code: str
+    dest_name: str
+    dest_arrival: str
+    dest_platform: Optional[str] = None
+    travel_distance_km: float
+    travel_duration_minutes: int
+    travel_duration_str: str
+    intermediate_stops_count: int
+    is_commercial_stop: bool = True
+
+class StationPlatformSchema(BaseModel):
+    id: Optional[int] = None
+    station_code: str
+    platform_number: str
+    platform_length_m: Optional[float] = None
+    platform_type: str = "Island"
+    electrification: bool = True
+    line_identifier: Optional[str] = None
+    status: str = "Operational"
+    class Config:
+        from_attributes = True
+
+class StationDetailSchema(BaseModel):
+    station_code: str
+    station_name: str
+    alternative_names: List[str] = []
+    zone: Optional[str] = None
+    division: Optional[str] = None
+    state: Optional[str] = None
+    district: Optional[str] = None
+    city: Optional[str] = None
+    station_category: Optional[str] = None
+    station_type: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    elevation: Optional[float] = None
+    total_platforms: int = 2
+    lines_count: int = 2
+    track_gauge: Optional[str] = "Broad Gauge (1676 mm)"
+    electrification_status: Optional[str] = "Electrified"
+    platforms: List[StationPlatformSchema] = []
+    class Config:
+        from_attributes = True
+
+class RailwayDivisionSchema(BaseModel):
+    division_code: str
+    division_name: str
+    headquarters: Optional[str] = None
+    route_km: Optional[float] = None
+
+class RailwayZoneSchema(BaseModel):
+    zone_code: str
+    zone_name: str
+    headquarters: str
+    founded_year: Optional[int] = None
+    total_route_km: Optional[float] = None
+    divisions: List[RailwayDivisionSchema] = []
+
+class RailwayDistanceSchema(BaseModel):
+    from_station_code: str
+    to_station_code: str
+    distance_km: float
+    is_consecutive: bool = True
+    cumulative_km: float = 0.0
+    section_name: Optional[str] = None
+    line_identifier: Optional[str] = None
+    class Config:
+        from_attributes = True
+
+class OperationalEventSchema(BaseModel):
+    id: Optional[int] = None
+    station_code: str
+    station_name: Optional[str] = None
+    first_train_number: str
+    first_train_name: Optional[str] = None
+    second_train_number: str
+    second_train_name: Optional[str] = None
+    event_type: str # Crossing, Overtaking, Junction Meet
+    scheduled_time: Optional[str] = None
+    track_line: Optional[str] = "Main Track / Loop Line"
+    verification_status: Optional[str] = "Verified WTT Schedule"
+    description: Optional[str] = None
+    class Config:
+        from_attributes = True
+
+class LiveRunningStop(BaseModel):
+    stop_number: int
+    station_code: str
+    station_name: str
+    scheduled_arrival: Optional[str] = None
+    scheduled_departure: Optional[str] = None
+    actual_arrival: Optional[str] = None
+    actual_departure: Optional[str] = None
+    delay_arrival_minutes: float = 0.0
+    delay_departure_minutes: float = 0.0
+    platform: str = "1"
+    distance_km: float = 0.0
+    status: str = "Upcoming" # Departed, Current, Next, Upcoming
+
+class LiveTrainRunningResponse(BaseModel):
+    train_number: str
+    train_name: str
+    train_category: str
+    source_station_code: str
+    source_station_name: str
+    dest_station_code: str
+    dest_station_name: str
+    current_status: str
+    current_station_code: str
+    current_station_name: str
+    delay_minutes: float
+    delay_category: str
+    last_reported_time: str
+    timeline: List[LiveRunningStop] = []

@@ -1,0 +1,253 @@
+[
+  {
+    "zone_code": "WR",
+    "zone_name": "Western Railway",
+    "headquarters": "Mumbai (Churchgate)",
+    "established_year": 1951,
+    "total_route_km": 6509.0,
+    "color_code": "#1E3E62",
+    "divisions": [
+      { "division_code": "BCT", "division_name": "Mumbai Western", "headquarters": "Mumbai Central", "state": "Maharashtra" },
+      { "division_code": "BRC", "division_name": "Vadodara", "headquarters": "Vadodara", "state": "Gujarat" },
+      { "division_code": "ADI", "division_name": "Ahmedabad", "headquarters": "Ahmedabad", "state": "Gujarat" },
+      { "division_code": "RTM", "division_name": "Ratlam", "headquarters": "Ratlam", "state": "Madhya Pradesh" },
+      { "division_code": "RJT", "division_name": "Rajkot", "headquarters": "Rajkot", "state": "Gujarat" },
+      { "division_code": "BVP", "division_name": "Bhavnagar", "headquarters": "Bhavnagar", "state": "Gujarat" }
+    ]
+  },
+  {
+    "zone_code": "CR",
+    "zone_name": "Central Railway",
+    "headquarters": "Mumbai (CSMT)",
+    "established_year": 1951,
+    "total_route_km": 4183.0,
+    "color_code": "#B91C1C",
+    "divisions": [
+      { "division_code": "CSMT_DIV", "division_name": "Mumbai Central", "headquarters": "CSMT", "state": "Maharashtra" },
+      { "division_code": "BSL", "division_name": "Bhusawal", "headquarters": "Bhusawal", "state": "Maharashtra" },
+      { "division_code": "PUNE", "division_name": "Pune", "headquarters": "Pune", "state": "Maharashtra" },
+      { "division_code": "SUR", "division_name": "Solapur", "headquarters": "Solapur", "state": "Maharashtra" },
+      { "division_code": "NGP_CR", "division_name": "Nagpur CR", "headquarters": "Nagpur", "state": "Maharashtra" }
+    ]
+  },
+  {
+    "zone_code": "NR",
+    "zone_name": "Northern Railway",
+    "headquarters": "New Delhi (Baroda House)",
+    "established_year": 1952,
+    "total_route_km": 7294.0,
+    "color_code": "#1D4ED8",
+    "divisions": [
+      { "division_code": "DLI", "division_name": "Delhi", "headquarters": "Delhi", "state": "Delhi" },
+      { "division_code": "UMB", "division_name": "Ambala", "headquarters": "Ambala", "state": "Haryana" },
+      { "division_code": "FZR", "division_name": "Firozpur", "headquarters": "Firozpur", "state": "Punjab" },
+      { "division_code": "LKO_NR", "division_name": "Lucknow NR", "headquarters": "Lucknow", "state": "Uttar Pradesh" },
+      { "division_code": "MB", "division_name": "Moradabad", "headquarters": "Moradabad", "state": "Uttar Pradesh" }
+    ]
+  },
+  {
+    "zone_code": "NCR",
+    "zone_name": "North Central Railway",
+    "headquarters": "Prayagraj",
+    "established_year": 2003,
+    "total_route_km": 3522.0,
+    "color_code": "#0D9488",
+    "divisions": [
+      { "division_code": "PRYJ_DIV", "division_name": "Prayagraj", "headquarters": "Prayagraj", "state": "Uttar Pradesh" },
+      { "division_code": "JHS", "division_name": "Jhansi", "headquarters": "Jhansi", "state": "Uttar Pradesh" },
+      { "division_code": "AGC_DIV", "division_name": "Agra", "headquarters": "Agra", "state": "Uttar Pradesh" }
+    ]
+  },
+  {
+    "zone_code": "ER",
+    "zone_name": "Eastern Railway",
+    "headquarters": "Kolkata (Fairlie Place)",
+    "established_year": 1952,
+    "total_route_km": 2774.0,
+    "color_code": "#047857",
+    "divisions": [
+      { "division_code": "HWH_DIV", "division_name": "Howrah", "headquarters": "Howrah", "state": "West Bengal" },
+      { "division_code": "SDAH_DIV", "division_name": "Sealdah", "headquarters": "Sealdah", "state": "West Bengal" },
+      { "division_code": "ASN", "division_name": "Asansol", "headquarters": "Asansol", "state": "West Bengal" },
+      { "division_code": "MLDT", "division_name": "Malda", "headquarters": "Malda", "state": "West Bengal" }
+    ]
+  },
+  {
+    "zone_code": "ECR",
+    "zone_name": "East Central Railway",
+    "headquarters": "Hajipur",
+    "established_year": 2002,
+    "total_route_km": 4252.0,
+    "color_code": "#D97706",
+    "divisions": [
+      { "division_code": "DNR", "division_name": "Danapur", "headquarters": "Danapur", "state": "Bihar" },
+      { "division_code": "DHN_DIV", "division_name": "Dhanbad", "headquarters": "Dhanbad", "state": "Jharkhand" },
+      { "division_code": "DDU_DIV", "division_name": "Pt Deen Dayal Upadhyaya", "headquarters": "Pt Deen Dayal Upadhyaya", "state": "Uttar Pradesh" },
+      { "division_code": "SPJ", "division_name": "Samastipur", "headquarters": "Samastipur", "state": "Bihar" },
+      { "division_code": "SEE", "division_name": "Sonpur", "headquarters": "Sonpur", "state": "Bihar" }
+    ]
+  },
+  {
+    "zone_code": "SR",
+    "zone_name": "Southern Railway",
+    "headquarters": "Chennai (Park Town)",
+    "established_year": 1951,
+    "total_route_km": 5079.0,
+    "color_code": "#7C3AED",
+    "divisions": [
+      { "division_code": "MAS_DIV", "division_name": "Chennai", "headquarters": "Chennai", "state": "Tamil Nadu" },
+      { "division_code": "TPJ", "division_name": "Tiruchirappalli", "headquarters": "Tiruchirappalli", "state": "Tamil Nadu" },
+      { "division_code": "MDU", "division_name": "Madurai", "headquarters": "Madurai", "state": "Tamil Nadu" },
+      { "division_code": "PGT", "division_name": "Palakkad", "headquarters": "Palakkad", "state": "Kerala" },
+      { "division_code": "SA_DIV", "division_name": "Salem", "headquarters": "Salem", "state": "Tamil Nadu" },
+      { "division_code": "TVC_DIV", "division_name": "Thiruvananthapuram", "headquarters": "Thiruvananthapuram", "state": "Kerala" }
+    ]
+  },
+  {
+    "zone_code": "SCR",
+    "zone_name": "South Central Railway",
+    "headquarters": "Secunderabad (Rail Nilayam)",
+    "established_year": 1966,
+    "total_route_km": 6128.0,
+    "color_code": "#4F46E5",
+    "divisions": [
+      { "division_code": "SC_DIV", "division_name": "Secunderabad", "headquarters": "Secunderabad", "state": "Telangana" },
+      { "division_code": "HYB", "division_name": "Hyderabad", "headquarters": "Hyderabad", "state": "Telangana" },
+      { "division_code": "BZA_DIV", "division_name": "Vijayawada", "headquarters": "Vijayawada", "state": "Andhra Pradesh" },
+      { "division_code": "GTL", "division_name": "Guntakal", "headquarters": "Guntakal", "state": "Andhra Pradesh" },
+      { "division_code": "GNT", "division_name": "Guntur", "headquarters": "Guntur", "state": "Andhra Pradesh" },
+      { "division_code": "NED", "division_name": "Nanded", "headquarters": "Nanded", "state": "Maharashtra" }
+    ]
+  },
+  {
+    "zone_code": "SER",
+    "zone_name": "South Eastern Railway",
+    "headquarters": "Kolkata (Garden Reach)",
+    "established_year": 1955,
+    "total_route_km": 2717.0,
+    "color_code": "#C026D3",
+    "divisions": [
+      { "division_code": "ADRA", "division_name": "Adra", "headquarters": "Adra", "state": "West Bengal" },
+      { "division_code": "CKP", "division_name": "Chakradharpur", "headquarters": "Chakradharpur", "state": "Jharkhand" },
+      { "division_code": "KGP", "division_name": "Kharagpur", "headquarters": "Kharagpur", "state": "West Bengal" },
+      { "division_code": "RNC", "division_name": "Ranchi", "headquarters": "Ranchi", "state": "Jharkhand" }
+    ]
+  },
+  {
+    "zone_code": "SECR",
+    "zone_name": "South East Central Railway",
+    "headquarters": "Bilaspur",
+    "established_year": 2003,
+    "total_route_km": 2511.0,
+    "color_code": "#DB2777",
+    "divisions": [
+      { "division_code": "BSP_DIV", "division_name": "Bilaspur", "headquarters": "Bilaspur", "state": "Chhattisgarh" },
+      { "division_code": "R_DIV", "division_name": "Raipur", "headquarters": "Raipur", "state": "Chhattisgarh" },
+      { "division_code": "NGP_SECR", "division_name": "Nagpur SECR", "headquarters": "Nagpur", "state": "Maharashtra" }
+    ]
+  },
+  {
+    "zone_code": "ECoR",
+    "zone_name": "East Coast Railway",
+    "headquarters": "Bhubaneswar (Rail Sadan)",
+    "established_year": 2003,
+    "total_route_km": 2795.0,
+    "color_code": "#0891B2",
+    "divisions": [
+      { "division_code": "KUR_DIV", "division_name": "Khurda Road", "headquarters": "Jatni", "state": "Odisha" },
+      { "division_code": "SBP", "division_name": "Sambalpur", "headquarters": "Sambalpur", "state": "Odisha" },
+      { "division_code": "WAT", "division_name": "Waltair", "headquarters": "Visakhapatnam", "state": "Andhra Pradesh" }
+    ]
+  },
+  {
+    "zone_code": "SWR",
+    "zone_name": "South Western Railway",
+    "headquarters": "Hubballi (Rail Soudha)",
+    "established_year": 2003,
+    "total_route_km": 3566.0,
+    "color_code": "#2563EB",
+    "divisions": [
+      { "division_code": "UBL", "division_name": "Hubballi", "headquarters": "Hubballi", "state": "Karnataka" },
+      { "division_code": "SBC_DIV", "division_name": "Bengaluru", "headquarters": "Bengaluru", "state": "Karnataka" },
+      { "division_code": "MYS", "division_name": "Mysuru", "headquarters": "Mysuru", "state": "Karnataka" }
+    ]
+  },
+  {
+    "zone_code": "WCR",
+    "zone_name": "West Central Railway",
+    "headquarters": "Jabalpur",
+    "established_year": 2003,
+    "total_route_km": 3020.0,
+    "color_code": "#EA580C",
+    "divisions": [
+      { "division_code": "JBP", "division_name": "Jabalpur", "headquarters": "Jabalpur", "state": "Madhya Pradesh" },
+      { "division_code": "BPL_DIV", "division_name": "Bhopal", "headquarters": "Bhopal", "state": "Madhya Pradesh" },
+      { "division_code": "KOTA_DIV", "division_name": "Kota", "headquarters": "Kota", "state": "Rajasthan" }
+    ]
+  },
+  {
+    "zone_code": "NWR",
+    "zone_name": "North Western Railway",
+    "headquarters": "Jaipur",
+    "established_year": 2002,
+    "total_route_km": 5553.0,
+    "color_code": "#CA8A04",
+    "divisions": [
+      { "division_code": "JP", "division_name": "Jaipur", "headquarters": "Jaipur", "state": "Rajasthan" },
+      { "division_code": "AII", "division_name": "Ajmer", "headquarters": "Ajmer", "state": "Rajasthan" },
+      { "division_code": "BKN", "division_name": "Bikaner", "headquarters": "Bikaner", "state": "Rajasthan" },
+      { "division_code": "JU", "division_name": "Jodhpur", "headquarters": "Jodhpur", "state": "Rajasthan" }
+    ]
+  },
+  {
+    "zone_code": "NER",
+    "zone_name": "North Eastern Railway",
+    "headquarters": "Gorakhpur",
+    "established_year": 1952,
+    "total_route_km": 3887.0,
+    "color_code": "#16A34A",
+    "divisions": [
+      { "division_code": "IZN", "division_name": "Izzatnagar", "headquarters": "Bareilly", "state": "Uttar Pradesh" },
+      { "division_code": "LJN", "division_name": "Lucknow NER", "headquarters": "Lucknow", "state": "Uttar Pradesh" },
+      { "division_code": "BSB_NER", "division_name": "Varanasi", "headquarters": "Varanasi", "state": "Uttar Pradesh" }
+    ]
+  },
+  {
+    "zone_code": "NFR",
+    "zone_name": "Northeast Frontier Railway",
+    "headquarters": "Maligaon (Guwahati)",
+    "established_year": 1958,
+    "total_route_km": 4350.0,
+    "color_code": "#9333EA",
+    "divisions": [
+      { "division_code": "KIR", "division_name": "Katihar", "headquarters": "Katihar", "state": "Bihar" },
+      { "division_code": "APDJ", "division_name": "Alipurduar", "headquarters": "Alipurduar", "state": "West Bengal" },
+      { "division_code": "RNY", "division_name": "Rangiya", "headquarters": "Rangiya", "state": "Assam" },
+      { "division_code": "LMG", "division_name": "Lumding", "headquarters": "Lumding", "state": "Assam" },
+      { "division_code": "TSK", "division_name": "Tinsukia", "headquarters": "Tinsukia", "state": "Assam" }
+    ]
+  },
+  {
+    "zone_code": "KR",
+    "zone_name": "Konkan Railway",
+    "headquarters": "CBD Belapur (Navi Mumbai)",
+    "established_year": 1998,
+    "total_route_km": 741.0,
+    "color_code": "#059669",
+    "divisions": [
+      { "division_code": "RN", "division_name": "Ratnagiri", "headquarters": "Ratnagiri", "state": "Maharashtra" },
+      { "division_code": "KAWR", "division_name": "Karwar", "headquarters": "Karwar", "state": "Karnataka" }
+    ]
+  },
+  {
+    "zone_code": "MRK",
+    "zone_name": "Metro Railway Kolkata",
+    "headquarters": "Kolkata (Metro Bhavan)",
+    "established_year": 2010,
+    "total_route_km": 39.0,
+    "color_code": "#64748B",
+    "divisions": [
+      { "division_code": "METRO_KOL", "division_name": "Kolkata Metro", "headquarters": "Kolkata", "state": "West Bengal" }
+    ]
+  }
+]

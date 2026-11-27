@@ -3,6 +3,10 @@ import { Navbar } from './components/Navbar';
 import { Sidebar, NavTab } from './components/Sidebar';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Dashboard } from './pages/Dashboard';
+import { TrainsBetweenStations } from './pages/TrainsBetweenStations';
+import { RailwayMap } from './pages/RailwayMap';
+import { StationMasterDirectory } from './pages/StationMasterDirectory';
+import { RailwayOperations } from './pages/RailwayOperations';
 import { TrainDelayPrediction } from './pages/TrainDelayPrediction';
 import { RouteAnalysis } from './pages/RouteAnalysis';
 import { DelayAnalytics } from './pages/DelayAnalytics';
@@ -23,9 +27,13 @@ export const App: React.FC = () => {
         <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} />
 
         {/* Main Content Area */}
-        <main className="flex-1 p-6 md:p-8 overflow-y-auto">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-y-auto">
           <ErrorBoundary key={currentTab}>
             {currentTab === 'dashboard' && <Dashboard onNavigateTab={setCurrentTab} />}
+            {currentTab === 'corridor' && <TrainsBetweenStations />}
+            {currentTab === 'map' && <RailwayMap />}
+            {currentTab === 'stations' && <StationMasterDirectory />}
+            {currentTab === 'operations' && <RailwayOperations />}
             {currentTab === 'predict' && <TrainDelayPrediction />}
             {currentTab === 'route' && <RouteAnalysis />}
             {currentTab === 'analytics' && <DelayAnalytics />}

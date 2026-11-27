@@ -13,8 +13,28 @@ import {
   RoutePredictionResponse,
   DatasetSummary,
   ModelRegistryItem,
-  PredictionHistoryItem
+  PredictionHistoryItem,
+  TrainBetweenStationsResult,
+  LiveTrainRunningResponse,
+  StationDetail,
+  StationPlatform,
+  RailwayZone,
+  RailwayDistance,
+  OperationalEvent,
+  MapNetwork
 } from '../types';
+import {
+  MASTER_STATIONS,
+  MASTER_TRAINS,
+  RAILWAY_ZONES,
+  RAILWAY_DISTANCES,
+  OPERATIONAL_EVENTS,
+  getStationDetails as getStationDetailsFallback,
+  getStationPlatforms as getStationPlatformsFallback,
+  searchTrainsBetweenStationsClient,
+  getLiveRunningClient,
+  getMapNetworkClient
+} from './railwayData';
 
 // Fallback to local server or environment variable
 const API_BASE = import.meta.env.VITE_API_BASE_URL || (
@@ -658,6 +678,121 @@ export const api = {
       return res.data;
     } catch {
       return [];
+    }
+  },
+
+  // ---------------- Comprehensive Indian Railways Master APIs ----------------
+  getTrainsBetweenStations: async (
+    source: string,
+    destination: string,
+    bidirectional: boolean = false,
+    category?: string,
+    day?: string
+  ): Promise<TrainBetweenStationsResult[]> => {
+    try {
+      const res = await apiClient.get('/trains/between-stations', {
+        params: {
+          source,
+          destination,
+          bidirectional,
+          category,
+          day
+        }
+      });
+      if (Array.isArray(res.data) && res.data.length > 0) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      return searchTrainsBetweenStationsClient(source, destination, bidirectional, category, day);
+    }
+  },
+
+  getLiveTrainStatus: async (trainNumber: string): Promise<LiveTrainRunningResponse | undefined> => {
+    try {
+      const res = await apiClient.get(`/trains/${trainNumber}/live`);
+      if (res.data && res.data.timeline) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      return getLiveRunningClient(trainNumber);
+    }
+  },
+
+  getMasterStations: async (search?: string, zone?: string, division?: string): Promise<StationDetail[]> => {
+    try {
+      const res = await apiClient.get('/stations', {
+        params: { search, zone, division }
+      });
+      if (Array.isArray(res.data) && res.data.length > 0) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      let filtered = [...MASTER_STATIONS];
+      if (search) {
+        const s = search.toLowerCase();
+        filtered = filtered.filter(st => st.station_code.toLowerCase().includes(s) || st.station_name.toLowerCase().includes(s));
+      }
+      if (zone) filtered = filtered.filter(st => st.zone?.toUpperCase() === zone.toUpperCase());
+      if (division) filtered = filtered.filter(st => st.division?.toUpperCase() === division.toUpperCase());
+      return filtered;
+    }
+  },
+
+  getStationPlatforms: async (code: string): Promise<StationPlatform[]> => {
+    try {
+      const res = await apiClient.get(`/stations/${code}/platforms`);
+      if (Array.isArray(res.data) && res.data.length > 0) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      return getStationPlatformsFallback(code);
+    }
+  },
+
+  getRailwayZones: async (): Promise<RailwayZone[]> => {
+    try {
+      const res = await apiClient.get('/railway/zones');
+      if (Array.isArray(res.data) && res.data.length > 0) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      return RAILWAY_ZONES;
+    }
+  },
+
+  getRailwayDistances: async (from?: string, to?: string, consecutiveOnly?: boolean): Promise<RailwayDistance[]> => {
+    try {
+      const res = await apiClient.get('/railway/distances', {
+        params: { from_code: from, to_code: to, consecutive_only: consecutiveOnly }
+      });
+      if (Array.isArray(res.data) && res.data.length > 0) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      let filtered = [...RAILWAY_DISTANCES];
+      if (from) filtered = filtered.filter(d => d.from_station_code === from.toUpperCase());
+      if (to) filtered = filtered.filter(d => d.to_station_code === to.toUpperCase());
+      if (consecutiveOnly) filtered = filtered.filter(d => d.is_consecutive);
+      return filtered;
+    }
+  },
+
+  getOperationalEvents: async (station?: string, eventType?: string): Promise<OperationalEvent[]> => {
+    try {
+      const res = await apiClient.get('/railway/operational-events', {
+        params: { station, event_type: eventType }
+      });
+      if (Array.isArray(res.data) && res.data.length > 0) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      let filtered = [...OPERATIONAL_EVENTS];
+      if (station) filtered = filtered.filter(e => e.station_code === station.toUpperCase());
+      if (eventType) filtered = filtered.filter(e => e.event_type.toLowerCase().includes(eventType.toLowerCase()));
+      return filtered;
+    }
+  },
+
+  getMapNetwork: async (): Promise<MapNetwork> => {
+    try {
+      const res = await apiClient.get('/railway/map-network');
+      if (res.data && res.data.nodes) return res.data;
+      throw new Error('Fallback to local');
+    } catch {
+      return getMapNetworkClient();
     }
   },
 };

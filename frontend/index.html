@@ -4,10 +4,33 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <title>Indian Railways AI Train Delay & Punctuality System | Where Is My Train</title>
+    <meta name="description" content="AI-Powered Indian Railways Train Delay Prediction, Punctuality Intelligence & Comprehensive Corridor Railway Network Platform" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+    <div id="root">
+      <!-- Fallback Loading Indicator while JS bundle loads -->
+      <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 20px;">
+        <div style="text-align: center; max-width: 450px; background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 32px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
+          <div style="width: 48px; height: 48px; border: 4px solid #38bdf8; border-top-color: transparent; border-radius: 50%; margin: 0 auto 16px; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 1.5px; color: #38bdf8; margin-bottom: 6px;">
+            भारतीय रेल • Indian Railways
+          </div>
+          <h2 style="font-size: 18px; font-weight: 800; margin: 0 0 8px 0; color: #ffffff;">
+            Where Is My Train AI Platform
+          </h2>
+          <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.5;">
+            Loading Machine Learning Models, Station Infrastructure & 40+ Corridor Timetables...
+          </p>
+        </div>
+      </div>
+      <style>
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
